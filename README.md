@@ -11,6 +11,8 @@ mac address you want to use.
 
 `pip install -r requirements.txt`
 
+You may need to install python-scapy as well:  
+`sudo apt-get install python-scapy`
 
 ## Run it (preferably in virtualenv)
 

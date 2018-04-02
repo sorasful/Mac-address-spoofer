@@ -7,12 +7,14 @@ You can select on which interface you want to scan for hosts and then you can se
 mac address you want to use. 
 
 
-## Install 
+## Install dependencies
 
 `pip install -r requirements.txt`
 
 
-## Run it 
+## Run it (preferably in virtualenv)
+
+`python3.6 spoof_mac_address.py`
 
 For me, I need to use sudo because I have a permission denied, but I use virtualenv, so
 when I sudo I loose my virtualenv. In case you have the same trouble, I do the following :

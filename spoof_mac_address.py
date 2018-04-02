@@ -2,12 +2,21 @@ from scapy.config import conf
 from scapy.layers.l2 import Ether, ARP
 from scapy.sendrecv import srp
 
+import netifaces  # retrieves network interfaces easily
+
 
 class Spoofer:
+    """ Class used to perform actions like getting all the interfaces, find hosts, change mac address ..."""
+    def __init__(self):
+        interfaces = netifaces.interfaces()
+        choosen_interface_num = eval(input(" On which interface would you like to find hosts ?\n {0} \n choose : "
+                                 .format("\n".join([f"{i} - {iface}" for i, iface in enumerate(interfaces)]))))
 
-    def __init__(self, interface, ips):
-        self.interface = interface
-        self.ips = ips
+        choosen_interface = interfaces[choosen_interface_num]
+        self.interface = choosen_interface
+        print(netifaces.ifaddresses(choosen_interface))
+        iface_infos = netifaces.ifaddresses(choosen_interface)
+        self.ips = "{0}/24".format(iface_infos[2][0]['addr'])  # scan all network
 
     def get_macs_and_ips(self):
         conf.verb = 0
@@ -20,6 +29,7 @@ class Spoofer:
 
         return hosts
 
+
 if __name__ == "__main__":
-    spoofer = Spoofer(interface='wlan0', ips='192.168.1.0/24')
-    spoofer.get_macs_and_ips()
+    spoofer = Spoofer()
+    print(spoofer.get_macs_and_ips())

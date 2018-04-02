@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from scapy.config import conf
 from scapy.layers.l2 import Ether, ARP
 from scapy.sendrecv import srp
